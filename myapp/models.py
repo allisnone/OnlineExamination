@@ -2,4 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
+
+class Exam(models.Model):
+    question = models.CharField(max_length=255)
+    answer = models.CharField(max_length=50)
