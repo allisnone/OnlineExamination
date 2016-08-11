@@ -20,7 +20,15 @@ def result(request, qn_id=None):
     exam = query_db(qn_id)
     # qn_id is a unicode, convert it to int
     print(int(qn_id) + 1)
+    form = check_form_validity(request, qn_id)
+    return render(request, 'result.html', {
+        'exam': exam,
+        'score': score,
+        'form': form
+    })
 
+
+def check_form_validity(request, qn_id):
     if request.method == 'POST':
         form = ExamForm(request.POST)
         if form.is_valid():
@@ -30,18 +38,9 @@ def result(request, qn_id=None):
             # print(form['answer'])
             check_result(data, qn_id)
         print("SCORE " + str(score))
-        return render(request, 'result.html', {
-            'exam': exam,
-            'score': score,
-            'form': form
-        })
     else:
         form = ExamForm()
-        return render(request, 'result.html', {
-            'exam': exam,
-            'score': score,
-            'form': form
-        })
+    return form
 
 
 def query_db(qn_id):
