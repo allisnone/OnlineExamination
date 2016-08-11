@@ -1,7 +1,5 @@
 from django import forms
 
-from myapp.models import Exam
-
 
 class ExamForm(forms.Form):
     CHOICES = [('TRUE', 'true'), ('FALSE', 'false')]

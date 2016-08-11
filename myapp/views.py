@@ -14,22 +14,10 @@ def index(request):
     })
 
 
-def queryDb(qn_id):
-    global score
-    try:
-        exam = Exam.objects.get(id=int(qn_id) + 1)
-    except Exception:
-        print(str(Exception))
-        score = 0
-        exam = Exam.objects.get(id=5)
-    finally:
-        return exam
-
-
 def result(request, qn_id=None):
     # gets access to global variable
     global score
-    exam = queryDb(qn_id)
+    exam = query_db(qn_id)
     # qn_id is a unicode, convert it to int
     print(int(qn_id) + 1)
 
@@ -54,6 +42,18 @@ def result(request, qn_id=None):
             'score': score,
             'form': form
         })
+
+
+def query_db(qn_id):
+    global score
+    try:
+        exam = Exam.objects.get(id=int(qn_id) + 1)
+    except Exception:
+        print(str(Exception))
+        score = 0
+        exam = Exam.objects.get(id=5)
+    finally:
+        return exam
 
 
 def check_result(data, qn_id):
