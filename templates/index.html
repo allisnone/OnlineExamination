@@ -6,26 +6,18 @@
 {% endblock %}
 
 {% block content %}
-    <p>
-        Nam congue ac mi aliquet condimentum. Morbi rhoncus a tellus nec varius.
-        Nam ornare, lacus ut ullamcorper laoreet, erat ante sodales augue, at ullamcorper tortor risus vitae magna.
-        InterdNam congue ac mi aliquet condimentum. Morbi rhoncus a tellus nec varius.
-        Nam ornare, lacus ut ullamcorper laoreet, erat ante sodales augue, at ullamcorper tortor risus vitae magna.
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean porta fringilla ipsum in dignissim. Sed eu
-        odio nulla.la. Vestibulum turpis urna, accumsan ullamcorper facilisis sed, tempor et magna. Morbi ultrices
-        aliquet loNam congue ac mi aliquet condimentum. Morbi rhoncus a tellus nec varius.
-        Nam ornare, lacus ut ullamcorper laoreet, erat ante sodales augue, at ullamcorper tortor risus vitae magna.
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean porta fringilla ipsum in dignissim. Sed eu
-        odio nulla.la. Vestibulum turpis urna, accumsan ullamcorper facilisis sed, tempor et magna. Morbi ultrices
-        aliquet lorem, nec consequat nibh hendrerit sit amet.
-        Nam congue ac mi aliquet condimentum. Morbi rhoncus a tellus nec varius.
-        Nam ornare, lacus ut ullamcorper laoreet, erat ante sodales augue, at ullamcorper tortor risus vitae magna.
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean porta fringilla ipsum in dignissim. Sed eu
-        odio nulla.orem, nec consequat nibh hendrerit sit amet.
-        Nam congue ac mi aliquet condimentum. Morbi rhoncus a tellus nec varius.
-        Nam ornare, lacus ut ullamcorper laoreet, erat ante sodales augue, at ullamcorper tortor risus vitae magna.
-        Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean porta fringilla ipsum in dignissim. Sed eu
-        odio nulla.
-    </p>
+    <p>{{ qn }}</p>
+    <form role="form" action="{% url 'result' qn %}" method="post">
+        {% csrf_token %}
+        <label for="id_first">Answer</label>
+        <input id="id_first" type="text" name="first" maxlength="100">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {#    {% for foo in qn %}#}
+    {#        <p>{{ foo }}</p>#}
+    {#    {% endfor %}#}
+
 
 {% endblock %}
