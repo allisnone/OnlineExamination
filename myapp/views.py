@@ -1,4 +1,7 @@
+from __future__ import print_function
 from django.shortcuts import render
+
+from myapp.models import Exam
 
 
 def index(request):
@@ -8,18 +11,20 @@ def index(request):
     })
 
 
-def result(request, qn_id):
-    counter = 0
-    if counter >= 2:
-        counter = 0
-    else:
-        counter += 1
-    qn = ['what is your name?', 'when did NASA step on the moon?', 'who stepped on the moon?']
+def result(request, qn_id=None):
+    try:
+        exam = Exam.objects.get(id=int(qn_id) + 1)
+    except Exception:
+        print(str(Exception)+'BUG')
+        exam = Exam.objects.get(id=5)
+    # qn_id is a unicode, convert it to int
+    print(int(qn_id) + 1)
+
     if request.method == 'POST':
         return render(request, 'result.html', {
-            'qn_id': qn[counter]
+            'exam': exam,
         })
 
     return render(request, 'result.html', {
-        'qn_id': 'error'
+        'exam': exam
     })

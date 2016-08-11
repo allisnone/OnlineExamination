@@ -7,10 +7,5 @@
 
 {% block content %}
     <p>{{ qn }}</p>
-    <form role="form" action="{% url 'result' 1 %}" method="post">
-        {% csrf_token %}
-        <label for="id_first">Answer</label>
-        <input id="id_first" type="text" name="first" maxlength="100">
-        <button type="submit">Submit</button>
-    </form>
+    <a href="{% url 'result' qn_id=5 %}">Start</a>
 {% endblock %}
