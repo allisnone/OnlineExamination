@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>Hello world</h1>
+    <h1>RESULT</h1>
     {{ block.super }}
 {% endblock %}
 
 {% block content %}
-    <h3>{{ score }}</h3>
-    <span>{{ exam.question }}</span>
-    <br>
-    <span>{{ exam.answer }}</span>
-    <br><br>
-
-    <form role="form" action="{% url 'result' exam.id %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <table border="1">
+        <th>Subject</th>
+        <th>Room</th>
+        <th>Time</th>
+        <th>Date</th>
+        {% for data in table %}
+        <tr>
+            <td>{{ data.sub_id }}</td>
+            <td>{{ data.room_id }}</td>
+            <td>{{ data.time }}</td>
+            <td>{{ data.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

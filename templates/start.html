@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>START</h1>
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h3>{{ score }}</h3>
+    <span>{{ exam.question }}</span>
+    <br>
+    <span>{{ exam.answer }}</span>
+    <br><br>
+
+    <form role="form" action="{% url 'start' exam.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}

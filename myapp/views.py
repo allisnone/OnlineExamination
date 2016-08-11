@@ -14,14 +14,14 @@ def index(request):
     })
 
 
-def result(request, qn_id=None):
+def start(request, qn_id=None):
     # gets access to global variable
     global score
     exam = query_db(qn_id)
     # qn_id is a unicode, convert it to int
     print(int(qn_id) + 1)
     form = check_form_validity(request, qn_id)
-    return render(request, 'result.html', {
+    return render(request, 'start.html', {
         'exam': exam,
         'score': score,
         'form': form
@@ -65,5 +65,13 @@ def check_result(data, qn_id):
 def time_table(request):
     table = TimeTable.objects.all()
     return render(request, 'timeTable.html', {
+        'table': table
+    })
+
+
+def result(request):
+    # TODO make registration and result
+    table = TimeTable.objects.all()
+    return render(request, 'result.html', {
         'table': table
     })
