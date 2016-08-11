@@ -12,12 +12,18 @@
     <span>{{ exam.answer }}</span>
     <br><br>
 
-    <form role="form" action="{% url 'result' exam.id %}" method="post">
-        {% csrf_token %}
-        <label for="id_answer">Answer</label>
-        <input id="id_answer" type="text" name="answer" maxlength="100" value="TRUE">
-        <br><br><br>
+{#    <form role="form" action="{% url 'result' exam.id %}" method="post">#}
+{#        {% csrf_token %}#}
+{#        <label for="id_answer">Answer</label>#}
+{#        <input id="id_answer" type="text" name="answer" maxlength="100" value="TRUE">#}
+{#        <br><br><br>#}
+{##}
+{#        <button type="submit">Submit</button>#}
+{#    </form>#}
 
-        <button type="submit">Submit</button>
+     <form role="form" action="" method="post">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit">Submit</button>
     </form>
 {% endblock %}
