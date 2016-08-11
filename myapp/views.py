@@ -16,18 +16,18 @@ def index(request):
 
 def result(request, qn_id=None):
     # gets access to global variable
-    # global score
-    #
-    # try:
-    #     exam = Exam.objects.get(id=int(qn_id) + 1)
-    # except Exception:
-    #     print(str(Exception) + 'BUG')
-    #     score = 0
-    #     exam = Exam.objects.get(id=5)
-    #
-    # # qn_id is a unicode, convert it to int
-    # print(int(qn_id) + 1)
-    #
+    global score
+
+    try:
+        exam = Exam.objects.get(id=int(qn_id) + 1)
+    except Exception:
+        print(str(Exception) + 'BUG')
+        score = 0
+        exam = Exam.objects.get(id=5)
+
+    # qn_id is a unicode, convert it to int
+    print(int(qn_id) + 1)
+
     # if request.method == 'POST':
     #     if request.POST['answer'] == exam.answer:
     #         score += 1
@@ -37,11 +37,6 @@ def result(request, qn_id=None):
     #         'exam': exam,
     #         'score': score
     #     })
-    #
-    # return render(request, 'result.html', {
-    #     'exam': exam,
-    #     'score': score
-    # })
 
     if request.method == 'POST':
         form = ExamForm(request.POST)
@@ -51,10 +46,20 @@ def result(request, qn_id=None):
             # returns the structure of the form
             print(form['answer'])
 
-            if data['answer']:
-                print(data['answer'])
+            if data['answer'] == exam.answer:
+                score += 1
+
+        print("SCORE " + str(score))
+        return render(request, 'result.html', {
+            'exam': exam,
+            'score': score,
+            'form': form
+        })
     else:
         form = ExamForm()
-    return render(request, 'result.html', {
-        'form': form
-    })
+        return render(request, 'result.html', {
+            'exam': exam,
+            'score': score,
+            'form': form
+
+        })
