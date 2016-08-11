@@ -2,7 +2,7 @@ from __future__ import print_function
 from django.shortcuts import render
 
 from myapp.forms import ExamForm
-from myapp.models import Exam
+from myapp.models import Exam, TimeTable
 
 score = 0
 
@@ -60,3 +60,10 @@ def check_result(data, qn_id):
     exam2 = Exam.objects.get(id=qn_id)
     if data['answer'] == exam2.answer:
         score += 1
+
+
+def time_table(request):
+    table = TimeTable.objects.all()
+    return render(request, 'timeTable.html', {
+        'table': table
+    })

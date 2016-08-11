@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>Hello world</h1>
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <table border="1">
+        <th>Subject</th>
+        <th>Room</th>
+        <th>Time</th>
+        <th>Date</th>
+        {% for data in table %}
+        <tr>
+            <td>{{ data.sub_id }}</td>
+            <td>{{ data.room_id }}</td>
+            <td>{{ data.time }}</td>
+            <td>{{ data.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
