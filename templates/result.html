@@ -7,4 +7,11 @@
 
 {% block content %}
     <p>{{ qn_id }}</p>
+     <form role="form" action="{% url 'result' 'question' %}" method="post">
+        {% csrf_token %}
+        <label for="id_first">Answer</label>
+        <input id="id_first" type="text" name="first" maxlength="100">
+
+        <button type="submit">Submit</button>
+    </form>
 {% endblock %}

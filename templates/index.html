@@ -7,17 +7,10 @@
 
 {% block content %}
     <p>{{ qn }}</p>
-    <form role="form" action="{% url 'result' qn %}" method="post">
+    <form role="form" action="{% url 'result' 1 %}" method="post">
         {% csrf_token %}
         <label for="id_first">Answer</label>
         <input id="id_first" type="text" name="first" maxlength="100">
-
         <button type="submit">Submit</button>
     </form>
-
-    {#    {% for foo in qn %}#}
-    {#        <p>{{ foo }}</p>#}
-    {#    {% endfor %}#}
-
-
 {% endblock %}

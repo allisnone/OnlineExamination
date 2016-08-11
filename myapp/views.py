@@ -4,7 +4,7 @@ from django.shortcuts import render
 def index(request):
     qn = ['what is your name?', 'when did NASA step on the moon?', 'who']
     return render(request, 'index.html', {
-        'qn': qn[2]
+        'qn': qn[1]
     })
 
 
