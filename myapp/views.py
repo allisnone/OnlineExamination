@@ -2,7 +2,7 @@ from __future__ import print_function
 from django.shortcuts import render
 
 from myapp.forms import ExamForm
-from myapp.models import Exam, TimeTable
+from myapp.models import Exam, TimeTable, Result
 
 score = 0
 
@@ -71,7 +71,7 @@ def time_table(request):
 
 def result(request):
     # TODO make registration and result
-    table = TimeTable.objects.all()
+    table = Result.objects.all()
     return render(request, 'result.html', {
         'table': table
     })

@@ -7,16 +7,18 @@
 
 {% block content %}
     <table border="1">
+        <th>Student</th>
         <th>Subject</th>
-        <th>Room</th>
-        <th>Time</th>
+        <th>Mark</th>
         <th>Date</th>
+        <th>Comment</th>
         {% for data in table %}
         <tr>
+            <td>{{ data.student_id }}</td>
             <td>{{ data.sub_id }}</td>
-            <td>{{ data.room_id }}</td>
-            <td>{{ data.time }}</td>
+            <td>{{ data.mark }}</td>
             <td>{{ data.date }}</td>
+            <td>{{ data.comment }}</td>
         </tr>
         {% endfor %}
     </table>
