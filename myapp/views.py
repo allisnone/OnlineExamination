@@ -2,7 +2,8 @@ from __future__ import print_function
 from django.shortcuts import render, redirect
 
 from myapp.forms import ExamForm
-from myapp.models import Exam, TimeTable, Result
+from myapp.models import Exam, TimeTable, Result, Subject, Student
+from datetime import date
 
 score = 0
 
@@ -27,6 +28,7 @@ def start(request, qn_id=None):
     print("ID " + qn_id)
     if is_last_question(int(qn_id)):
         comment = genenarate_comment()
+        save_result(comment)
         return render(request, 'end.html', {
             'score': score,
             'comment': comment
@@ -43,6 +45,12 @@ def start(request, qn_id=None):
         'score': score,
         'form': form
     })
+
+
+def save_result(comment):
+    global score
+    student_result = Result(sub_id=Subject.objects.get(id=2), student_id=Student.objects.get(id=2), mark=score, comment=comment, date=date.today())
+    student_result.save()
 
 
 def genenarate_comment():
