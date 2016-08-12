@@ -32,17 +32,6 @@ class TimeTable(models.Model):
     date = models.DateField()
 
 
-class Result(models.Model):
-    sub_id = models.ForeignKey(Subject)
-    mark = models.FloatField()
-    date = models.DateField()
-    name = models.CharField(max_length=255)
-
-    def __unicode__(self):
-        # the database requires string to identify 'Result object'
-        return str(self.sub_id)
-
-
 class Qualification(models.Model):
     level = models.CharField(max_length=255)
 
@@ -70,10 +59,21 @@ class ClassRoom(models.Model):
 
 
 class Student(models.Model):
-    result_id = models.ForeignKey(Result)
     classroom_id = models.ForeignKey(ClassRoom)
     name = models.CharField(max_length=255)
     age = models.IntegerField()
 
     def __unicode__(self):
         return self.name
+
+
+class Result(models.Model):
+    sub_id = models.ForeignKey(Subject)
+    student_id = models.ForeignKey(Student)
+    mark = models.FloatField()
+    date = models.DateField()
+    comment = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        # the database requires string to identify 'Result object'
+        return str(self.comment)
