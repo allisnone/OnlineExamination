@@ -19,6 +19,11 @@ p {
     color: dimgrey;
 }
 
+span {
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    color: dimgrey;
+}
+
 body {
     margin-top: 5%;
     margin-left: 20%;

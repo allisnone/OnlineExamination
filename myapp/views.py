@@ -22,12 +22,17 @@ def is_last_question(id):
 
 
 def start(request, qn_id=None):
+    global score
+
     print("ID " + qn_id)
     if is_last_question(int(qn_id)):
-        return redirect('end')
+        comment = genenarate_comment()
+        return render(request, 'end.html', {
+            'score': score,
+            'comment': comment
+        })
 
     # gets access to global variable
-    global score
     exam = query_db(qn_id)
 
     # qn_id is a unicode, convert it to int
@@ -38,6 +43,21 @@ def start(request, qn_id=None):
         'score': score,
         'form': form
     })
+
+
+def genenarate_comment():
+    global score
+    comments = ['Nice', 'Try harder next-time', 'Very good', 'Good', 'Excellent']
+    if score >= 4:
+        return comments[4]
+    elif score >= 3:
+        return comments[2]
+    elif score >= 2:
+        return comments[3]
+    elif score >= 1:
+        return comments[0]
+    else:
+        return comments[1]
 
 
 def check_form_validity(request, qn_id):
