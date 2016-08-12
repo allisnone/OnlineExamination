@@ -30,3 +30,50 @@ class TimeTable(models.Model):
     room_id = models.ForeignKey(Room)
     time = models.TimeField()
     date = models.DateField()
+
+
+class Result(models.Model):
+    sub_id = models.ForeignKey(Subject)
+    mark = models.FloatField()
+    date = models.DateField()
+    name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        # the database requires string to identify 'Result object'
+        return str(self.sub_id)
+
+
+class Qualification(models.Model):
+    level = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.level
+
+
+class Lecturer(models.Model):
+    name = models.CharField(max_length=255)
+    age = models.IntegerField()
+    qualification = models.ForeignKey(Qualification)
+    salary = models.IntegerField()
+
+    def __unicode__(self):
+        return self.name
+
+
+class ClassRoom(models.Model):
+    lecturer_id = models.ForeignKey(Lecturer)
+    room_id = models.ForeignKey(Room)
+    name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
+
+
+class Student(models.Model):
+    result_id = models.ForeignKey(Result)
+    classroom_id = models.ForeignKey(ClassRoom)
+    name = models.CharField(max_length=255)
+    age = models.IntegerField()
+
+    def __unicode__(self):
+        return self.name
