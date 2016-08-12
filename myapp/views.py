@@ -27,7 +27,7 @@ def start(request, qn_id=None):
 
     print("ID " + qn_id)
     if is_last_question(int(qn_id)):
-        comment = genenarate_comment()
+        comment = generate_comment()
         save_result(comment)
         return render(request, 'end.html', {
             'score': score,
@@ -49,11 +49,12 @@ def start(request, qn_id=None):
 
 def save_result(comment):
     global score
-    student_result = Result(sub_id=Subject.objects.get(id=2), student_id=Student.objects.get(id=2), mark=score, comment=comment, date=date.today())
+    student_result = Result(sub_id=Subject.objects.get(id=2), student_id=Student.objects.get(id=2),
+                            mark=score, comment=comment, date=date.today())
     student_result.save()
 
 
-def genenarate_comment():
+def generate_comment():
     global score
     comments = ['Nice', 'Try harder next-time', 'Very good', 'Good', 'Excellent']
     if score >= 4:
