@@ -1,5 +1,5 @@
 from __future__ import print_function
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from myapp.forms import ExamForm
 from myapp.models import Exam, TimeTable, Result
@@ -14,11 +14,17 @@ def index(request):
     })
 
 
+def is_last_question(id):
+    if id == 10:
+        print('RENDERING')
+        return True
+    return False
+
+
 def start(request, qn_id=None):
     print("ID " + qn_id)
-    if int(qn_id) == 10:
-        print('RENDERING')
-        return render(request, 'end.html')
+    if is_last_question(int(qn_id)):
+        return redirect('end')
 
     # gets access to global variable
     global score
