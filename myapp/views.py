@@ -15,9 +15,15 @@ def index(request):
 
 
 def start(request, qn_id=None):
+    print("ID " + qn_id)
+    if int(qn_id) == 10:
+        print('RENDERING')
+        return render(request, 'end.html')
+
     # gets access to global variable
     global score
     exam = query_db(qn_id)
+
     # qn_id is a unicode, convert it to int
     print(int(qn_id) + 1)
     form = check_form_validity(request, qn_id)
