@@ -1,5 +1,5 @@
 from __future__ import print_function
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from myapp.forms import ExamForm
 from myapp.models import Exam, TimeTable, Result, Subject, Student
